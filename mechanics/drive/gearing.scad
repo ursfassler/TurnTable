@@ -11,7 +11,7 @@ module gearing(){
 		length=60,
 		worm_bore=1,
 		gear_bore=3,
-		pressure_angle=10,
+		pressure_angle=20,
 		lead_angle=10,
 		optimized=true,
 		together_built=true);
