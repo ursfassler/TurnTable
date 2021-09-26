@@ -1,6 +1,8 @@
 gears:
-Copied from https://github.com/chrisspen/gears and deleted the .git folder and .gitignore.
-As I don't wan't to include it as a submodule and no releases are provided I decided to include it that way.
+To make changes to the library I decided to fork it.
+see: https://github.com/erichstuder/gears
+It also gives me the possibility to provide releases.
+As I don't wan't to include it as a submodule I decided to include it that way.
 Credit to all contributers for their awesome work!
 Licensing applies as described in the library (see gears/LICENSE.txt).
   
