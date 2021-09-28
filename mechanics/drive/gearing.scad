@@ -9,7 +9,10 @@ module gearing(fitted=false){
 	pressure_angle = 20;
 	lead_angle = 10;
 	
-	gear();
+	translate([67.9, -41.6, 10])
+		rotate([-90, 360/24, 0])
+			smallGear();
+	
 	if(fitted){
 		translate([56, 30.4, 10])
 			rotate([90, 0, 0])
@@ -19,8 +22,53 @@ module gearing(fitted=false){
 		translate([80, 0, 0])
 			wormGear();
 	}
-
-	module gear(){
+	bigGear();
+	
+	
+	module smallGear(){
+		difference(){
+			spur_gear(
+				modul=modul,
+				tooth_number=12,
+				width=10,
+				bore=3,
+				pressure_angle=pressure_angle,
+				helix_angle=0,
+				optimized=false);
+			servoAxisFit();
+			translate([0, 0, 3+1.2])
+				#cylinder(d=6, h=10);
+		}
+	}
+	
+	module wormGear(){
+		wormLength = 60;
+		gearLength = 12;
+		difference(){
+			union(){
+				worm(
+					modul=modul,
+					thread_starts=2,
+					length=wormLength,
+					bore=0,
+					pressure_angle=pressure_angle,
+					lead_angle=lead_angle,
+					together_built=true);
+				translate([0, 0, wormLength])
+					spur_gear(
+						modul=modul,
+						tooth_number=12,
+						width=gearLength,
+						bore=0,
+						pressure_angle=pressure_angle,
+						helix_angle=0,
+						optimized=false);
+			}
+			cylinder(d=4, h=wormLength+gearLength);
+		}
+	}
+	
+	module bigGear(){
 		width = 25;
 		difference(){
 			spur_gear(
@@ -34,17 +82,27 @@ module gearing(fitted=false){
 		}
 	}
 	
-	module wormGear(){
-		difference(){
-			worm(
-				modul=modul,
-				thread_starts=2,
-				length=60,
-				bore=0,
-				pressure_angle=pressure_angle,
-				lead_angle=lead_angle,
-				together_built=true);
-			#cylinder(d=4, h=10);
+	module servoAxisFit(){
+		toothAngle = 360/23;
+		
+		linear_extrude(3)
+			for(angle = [0:toothAngle:360-toothAngle])
+				rotate([0, 0, angle])
+					tooth();
+		
+		module tooth(){
+			triangle();
+			rotate([180, 0, 0])
+				triangle();
+		}
+
+		module triangle(){
+			angleOverlap = 0.1;
+			angle = toothAngle/2 + angleOverlap;
+			innerRadius = 2.5;
+			height = innerRadius * sin(angle);
+			a = innerRadius * cos(angle);
+			polygon([[0,0], [3.2,0], [a,height]]);
 		}
 	}
 }
