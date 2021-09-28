@@ -9,8 +9,8 @@ module gearing(fitted=false){
 	pressure_angle = 20;
 	lead_angle = 10;
 	
-	translate([67.9, -41.6, 10])
-		rotate([-90, 360/24, 0])
+	translate([71, -50.6, 10])
+		rotate([-90, 0, 0])
 			smallGear();
 	
 	if(fitted){
@@ -26,18 +26,19 @@ module gearing(fitted=false){
 	
 	
 	module smallGear(){
+		length = 20;
 		difference(){
 			spur_gear(
 				modul=modul,
-				tooth_number=12,
-				width=10,
+				tooth_number=15,
+				width=20,
 				bore=3,
 				pressure_angle=pressure_angle,
 				helix_angle=0,
 				optimized=false);
 			servoAxisFit();
 			translate([0, 0, 3+1.2])
-				#cylinder(d=6, h=10);
+				cylinder(d=6, h=length);
 		}
 	}
 	
@@ -57,7 +58,7 @@ module gearing(fitted=false){
 				translate([0, 0, wormLength])
 					spur_gear(
 						modul=modul,
-						tooth_number=12,
+						tooth_number=15,
 						width=gearLength,
 						bore=0,
 						pressure_angle=pressure_angle,
