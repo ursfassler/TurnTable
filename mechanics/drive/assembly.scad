@@ -3,7 +3,7 @@ use <gearing.scad>
 
 translate([0, 0, 5]){
 	gearing(fitted=true);
-	translate([65.75, -48.3, 10])
+	translate([80.75, -69.3, 10])
 		rotate([90, 0, 180])
 			servo(color=[0, 1, 0, 0.5]);
 }
