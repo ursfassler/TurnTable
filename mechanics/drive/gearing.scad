@@ -33,6 +33,15 @@ module gearing(fitted=false){
 				pressure_angle=pressure_angle,
 				helix_angle=-lead_angle,
 				optimized=false);
+			dAngle = 120;
+			for(angle = [0:dAngle:360-dAngle])
+				rotate([0, 0, angle])
+					translate([35, 0, 0]){
+						#cylinder(d=4.5, h=width);
+						#cylinder(d1=9, d2=3.2, h=4.5);
+					}
+			translate([0, 0, -2])
+				#cylinder(d=40, h=width);
 		}
 	}
 	
