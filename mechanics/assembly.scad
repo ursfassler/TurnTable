@@ -1,6 +1,7 @@
 use <mocks/servo.scad>
 use <drive/gearing.scad>
 use <servoHolder/servoHolder.scad>
+use <wormGearHolder/wormGearHolder.scad>
 
 translate([0, 0, 5]){
 	gearing(fitted=true);
@@ -13,6 +14,10 @@ translate([0, 0, 5]){
 translate([-80, -62.5, 13.5])
 	rotate([0, 0, 95])
 		servoHolder();
+
+translate([-52, 20.5, 0])
+	rotate([0, 0, 185])
+		wormGearHolder(fitted=true);
 
 bottom();
 //ceiling();
