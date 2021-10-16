@@ -3,7 +3,7 @@ servoHolder();
 module servoHolder(){
 	$fn = 90;
 	depth = 40;
-	height = 30;
+	height = 27;
 	innerHeight = 19;
 	servoHeight = 6;
 	difference(){

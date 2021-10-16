@@ -10,7 +10,7 @@ translate([0, 0, 5]){
 			servo(color=[0, 1, 0, 0.5]);	
 }
 
-translate([-80, -62.5, 15])
+translate([-80, -62.5, 13.5])
 	rotate([0, 0, 95])
 		servoHolder();
 
