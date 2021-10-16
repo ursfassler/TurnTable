@@ -1,15 +1,21 @@
-use <servo.scad>
-use <gearing.scad>
+use <mocks/servo.scad>
+use <drive/gearing.scad>
+use <servoHolder/servoHolder.scad>
 
 translate([0, 0, 5]){
 	gearing(fitted=true);
-	translate([-65.75, -48.3, 10])
-		rotate([-90, 0, 0])
-			servo(color=[0, 1, 0, 0.5]);
+	
+	translate([-59, -78.4, 10])
+		rotate([-90, 0, 5])
+			servo(color=[0, 1, 0, 0.5]);	
 }
 
+translate([-80, -62.5, 15])
+	rotate([0, 0, 95])
+		servoHolder();
+
 bottom();
-ceiling();
+//ceiling();
 
 
 module bottom(){

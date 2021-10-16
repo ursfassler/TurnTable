@@ -11,8 +11,8 @@ module gearing(fitted=false){
 	
 	gear();
 	if(fitted){
-		translate([56-100-12, -30.1, 10])
-			rotate([-90, 0, 0])
+		translate([56-100-8.5, -40.1, 10])
+			rotate([-90, 0, 5])
 				wormGear();
 		guidingGears(fitted);
 	}
