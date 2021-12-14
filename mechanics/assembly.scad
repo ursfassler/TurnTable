@@ -1,22 +1,24 @@
-use <mocks/servo.scad>
+use <mocks/servo_modified.scad>
 use <drive/gearing.scad>
 use <servoHolder/servoHolder.scad>
 use <wormGearHolder/wormGearHolder.scad>
 
 translate([0, 0, 5]){
 	gearing(fitted=true);
-	
-	translate([-59, -78.4, 10])
-		rotate([-90, 0, 5])
-			servo(color=[0, 1, 0, 0.5]);	
+	direction = [-1, 1];
+	for(n = [0:1]){
+		translate([-65.3, direction[n]*67.5, 6.35])
+			rotate([direction[n]*90, 0, 0])
+				servo_modified(color=[0, 1, 0, 0.5]);
+	}
 }
 
-translate([-80, -62.5, 13.5])
-	rotate([0, 0, 95])
-		servoHolder();
+translate([-85, -50, 11.3])
+	rotate([0, 0, 90])
+		servoHolder_double();
 
-translate([-52, 20.5, 0])
-	rotate([0, 0, 185])
+translate([-106, 50, 0])
+	rotate([0, 0, 180])
 		wormGearHolder(fitted=true);
 
 bottom();

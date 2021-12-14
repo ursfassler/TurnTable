@@ -2,7 +2,7 @@ use <../lib/gears/gears.scad>
 
 $fn = 90;
 
-gearing(true);
+gearing(fitted=false);
 
 module gearing(fitted=false){
 	modul = 1;
@@ -11,8 +11,8 @@ module gearing(fitted=false){
 	
 	gear();
 	if(fitted){
-		translate([56-100-8.5, -40.1, 10])
-			rotate([-90, 0, 5])
+		translate([56-100-11.5, -30, 6.35])
+			rotate([-90, 22, 0])
 				wormGear();
 		guidingGears(fitted);
 	}
@@ -57,15 +57,7 @@ module gearing(fitted=false){
 				pressure_angle=pressure_angle,
 				lead_angle=lead_angle,
 				together_built=true);
-			
-			servoFitHeight = 3.2;
-			#servoAxisFit(servoFitHeight);
-			
-			holdingHoleHeight = 4.7;
-			#cylinder(d=4, h=holdingHoleHeight+servoFitHeight);
-			
-			translate([0, 0, holdingHoleHeight+servoFitHeight])
-				#cylinder(d=6, h=length);
+			#servoAxisFit(60);
 		}
 	}
 	
@@ -96,30 +88,28 @@ module gearing(fitted=false){
 	module guidingGears(fitted=true){
 		angleOffset = -70;
 		angleDelta = 120;
-		rotate([0, 0, 10]){
-			for(angle = [0:angleDelta:360-angleDelta]){
-				rotate([0, 0, angle]){
-					translate([60, 0, -2])
-						spur_gear(
-							modul=modul,
-							tooth_number=20,
-							width=15,
-							bore=4,
-							pressure_angle=pressure_angle,
-							helix_angle=lead_angle,
-							optimized=false);
+		for(angle = [0:angleDelta:360-angleDelta]){
+			rotate([0, 0, angle]){
+				translate([60, 0, -2])
+					spur_gear(
+						modul=modul,
+						tooth_number=20,
+						width=15,
+						bore=4,
+						pressure_angle=pressure_angle,
+						helix_angle=lead_angle,
+						optimized=false);
 
-				}
 			}
-			color("Gold", 0.8)
-				if(fitted){
-					holder();
-				}
-				else{
-					translate([130, 0, 0])
-						holder();
-				}
 		}
+		color("Gold", 0.8)
+			if(fitted){
+				holder();
+			}
+			else{
+				translate([130, 0, 0])
+					holder();
+			}
 
 		module holder(){
 			height = 25;
