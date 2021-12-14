@@ -1,3 +1,4 @@
+$fn = 45;
 height = 23;
 depth = 40;
 
@@ -14,7 +15,6 @@ module servoHolder_double(){
 }
 
 module servoHolder(){
-	$fn = 90;
 	innerHeight = 19;
 	servoHeight = 2;
 	difference(){
