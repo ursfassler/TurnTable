@@ -1,5 +1,4 @@
 #include "CppUTestExt/MockSupport.h"
-
 #include "Arduino.h"
 
 void pinMode(pin_size_t pin, PinMode mode){
@@ -17,4 +16,9 @@ void digitalWrite(pin_size_t pin, PinStatus val){
 void delay(unsigned long ms){
 	mock().actualCall("delay")
 		.withParameter("ms", ms);
+}
+
+unsigned long millis(void){
+	mock().actualCall("millis");
+	return mock().intReturnValue();
 }

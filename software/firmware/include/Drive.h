@@ -7,5 +7,5 @@ namespace Drive{
 		Counterclockwise,
 	} State;
 
-	void setState(State state);
+	extern void (*setState)(State state);
 }

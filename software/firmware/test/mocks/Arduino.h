@@ -1,8 +1,4 @@
 #pragma once
-   
-#define LED_BUILTIN (13u)
-
-#include <stdint.h>
 
 typedef enum {
 	//PullNone,

@@ -18,7 +18,7 @@ namespace Drive{
 		}
 	}
 
-	void setState(State state){
+	static void setState_Implementation(State state){
 		pinMode(DirectionPin_1, OUTPUT);
 		pinMode(DirectionPin_2, OUTPUT);
 		switchingDelay(oldState, state);
@@ -38,4 +38,5 @@ namespace Drive{
 		}
 		oldState = state;
 	}
+	void (*setState)(State state) = setState_Implementation;
 }
