@@ -13,3 +13,8 @@ void digitalWrite(pin_size_t pin, PinStatus val){
 		.withParameter("pin", pin)
 		.withParameter("val", val);
 }
+
+void delay(unsigned long ms){
+	mock().actualCall("delay")
+		.withParameter("ms", ms);
+}
