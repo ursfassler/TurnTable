@@ -2,9 +2,9 @@
 
 namespace Drive{
 	typedef enum {
+		Stopped,
 		Clockwise,
 		Counterclockwise,
-		Stopped,
 	} State;
 
 	void setState(State state);
