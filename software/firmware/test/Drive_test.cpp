@@ -82,6 +82,7 @@ TEST(Drive_test, state_transitions){
 									{ Drive::Counterclockwise, Drive::Counterclockwise, HIGH, LOW,  expectPins_noSwitchingDelay },
 								};
 
+	printf("\n");
 	for(uint n = 0; n < sizeof(transitions) / sizeof(transitions[0]); n++){
 		printf("Testing transition with index: %d\n", n);
 
