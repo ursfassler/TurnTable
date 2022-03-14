@@ -13,10 +13,6 @@ static void setState_Mock(Drive::State state){
 		.withParameter("state", state);
 }
 
-static void setEventHandler_Mock(int event, BLECharacteristicEventHandler eventHandler){
-	writtenHandler = eventHandler;
-}
-
 TEST_GROUP(RemoteControl_test){
 	void setup(){}
 	void teardown(){
@@ -68,14 +64,33 @@ TEST(RemoteControl_test, tick_timeout){
 }
 
 TEST(RemoteControl_test, writteHandler){
-	UT_PTR_SET(Drive::setState, setState_Mock);
-	//TODO: mock the function and test the handler
-	//UT_PTR_SET(BLEByteCharacteristic::setEventHandler, setEventHandler_Mock);
-	//mock().ignoreOtherCalls();
+	typedef struct{
+		byte characteristicValue;
+		Drive::State expectedState;
+	} ValueToState;
 
+	ValueToState valueToState[] = { { 0x00, Drive::Stopped          },
+	                                { 0x01, Drive::Clockwise        },
+	                                { 0x02, Drive::Counterclockwise },
+	                                { 0x03, Drive::Stopped          },
+								  };
 
-	/*mock().expectOneCall("setState_Mock")
-		.withParameter("state", Drive::Stopped);*/
+	mock().disable();
+	RemoteControl::setup();
+	mock().enable();
+	BLECharacteristicEventHandler writtenHandler = (BLECharacteristicEventHandler)mock().getData("eventHandler").getPointerValue();
 	
-	//RemoteControl::setup();
+	BLEDevice bleDeviceDummy;
+	BLECharacteristic bleCharacteristicDummy;
+	UT_PTR_SET(Drive::setState, setState_Mock);
+	for(uint n=0; n < sizeof(valueToState) / sizeof(valueToState[0]); n++){
+		mock().expectOneCall("BLECharacteristic::value")
+			.andReturnValue(valueToState[n].characteristicValue);
+		mock().expectOneCall("setState_Mock")
+			.withParameter("state", valueToState[n].expectedState);
+		mock().expectOneCall("millis");
+		mock().ignoreOtherCalls();
+
+		writtenHandler(bleDeviceDummy, bleCharacteristicDummy);
+	}
 }

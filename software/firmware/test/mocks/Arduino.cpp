@@ -20,5 +20,5 @@ void delay(unsigned long ms){
 
 unsigned long millis(void){
 	mock().actualCall("millis");
-	return mock().intReturnValue();
+	return mock().returnIntValueOrDefault(0);
 }

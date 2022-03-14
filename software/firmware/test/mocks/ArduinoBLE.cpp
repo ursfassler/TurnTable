@@ -4,7 +4,10 @@
 
 static BLECharacteristicEventHandler myEventHandler;
 
-byte BLECharacteristic::value(){ return 0; }
+byte BLECharacteristic::value(){
+	mock().actualCall("BLECharacteristic::value");
+	return mock().returnIntValueOrDefault(0);
+}
 
 int BLECharacteristic::writeValue(byte value){
 	mock().actualCall("BLECharacteristic::writeValue")
@@ -26,6 +29,7 @@ BLEByteCharacteristic::BLEByteCharacteristic(const char* uuid, unsigned char pro
 void BLEByteCharacteristic::setEventHandler(int event, BLECharacteristicEventHandler eventHandler){
 	mock().actualCall("BLEByteCharacteristic::setEventHandler")
 		.withParameter("event", event);
+	mock().setData("eventHandler", (void*)eventHandler);
 	CHECK(eventHandler != NULL);
 }
 
