@@ -1,11 +1,11 @@
 #pragma once
 
 namespace Drive{
-	typedef enum {
+	enum class State{
 		Stopped,
 		Clockwise,
 		Counterclockwise,
-	} State;
+	};
 
 	extern void (*setState)(State state);
 }

@@ -6,11 +6,9 @@
 #include "RemoteControl.h"
 #include "Drive.h"
 
-BLECharacteristicEventHandler writtenHandler;
-
 static void setState_Mock(Drive::State state){
 	mock().actualCall("setState_Mock")
-		.withParameter("state", state);
+		.withParameter("state", (int)state);
 }
 
 TEST_GROUP(RemoteControl_test){
@@ -58,7 +56,7 @@ TEST(RemoteControl_test, tick_timeout){
 	mock().expectOneCall("millis")
 		.andReturnValue(101);
 	mock().expectOneCall("setState_Mock")
-		.withParameter("state", Drive::Stopped);
+		.withParameter("state", (int)Drive::State::Stopped);
 	mock().ignoreOtherCalls();
 	RemoteControl::tick();
 }
@@ -69,10 +67,10 @@ TEST(RemoteControl_test, writteHandler){
 		Drive::State expectedState;
 	} ValueToState;
 
-	ValueToState valueToState[] = { { 0x00, Drive::Stopped          },
-	                                { 0x01, Drive::Clockwise        },
-	                                { 0x02, Drive::Counterclockwise },
-	                                { 0x03, Drive::Stopped          },
+	ValueToState valueToState[] = { { 0x00, Drive::State::Stopped          },
+	                                { 0x01, Drive::State::Clockwise        },
+	                                { 0x02, Drive::State::Counterclockwise },
+	                                { 0x03, Drive::State::Stopped          },
 								  };
 
 	mock().disable();
@@ -87,7 +85,7 @@ TEST(RemoteControl_test, writteHandler){
 		mock().expectOneCall("BLECharacteristic::value")
 			.andReturnValue(valueToState[n].characteristicValue);
 		mock().expectOneCall("setState_Mock")
-			.withParameter("state", valueToState[n].expectedState);
+			.withParameter("state", (int)(valueToState[n].expectedState));
 		mock().expectOneCall("millis");
 		mock().ignoreOtherCalls();
 

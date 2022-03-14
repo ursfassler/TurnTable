@@ -4,7 +4,7 @@
 namespace Drive{
 	static const pin_size_t DirectionPin_1 = 2;
 	static const pin_size_t DirectionPin_2 = 3;
-	static State oldState = Stopped;
+	static State oldState = State::Stopped;
 
 	static inline void stopDrive(){
 		digitalWrite(DirectionPin_1, HIGH);
@@ -23,15 +23,15 @@ namespace Drive{
 		pinMode(DirectionPin_2, OUTPUT);
 		switchingDelay(oldState, state);
 		switch(state){
-			case Clockwise:
+			case State::Clockwise:
 				digitalWrite(DirectionPin_1, LOW);
 				digitalWrite(DirectionPin_2, HIGH);
 				break;
-			case Counterclockwise:
+			case State::Counterclockwise:
 				digitalWrite(DirectionPin_1, HIGH);
 				digitalWrite(DirectionPin_2, LOW);
 				break;
-			case Stopped:
+			case State::Stopped:
 			default:
 				stopDrive();
 				break;

@@ -71,15 +71,15 @@ TEST(Drive_test, state_transitions){
 		void (*expectPinsFunction)(PinStatus, PinStatus);
 	} Transition;
 
-	Transition transitions[] =	{	{ Drive::Stopped,          Drive::Stopped,          HIGH, HIGH, expectPins_noSwitchingDelay },
-									{ Drive::Stopped,          Drive::Clockwise,        LOW,  HIGH, expectPins_switchingDelay   },
-									{ Drive::Stopped,          Drive::Counterclockwise, HIGH, LOW,  expectPins_switchingDelay   },
-									{ Drive::Clockwise,        Drive::Stopped,          HIGH, HIGH, expectPins_switchingDelay   },
-									{ Drive::Clockwise,        Drive::Clockwise,        LOW,  HIGH, expectPins_noSwitchingDelay },
-									{ Drive::Clockwise,        Drive::Counterclockwise, HIGH, LOW,  expectPins_switchingDelay   },
-									{ Drive::Counterclockwise, Drive::Stopped,          HIGH, HIGH, expectPins_switchingDelay   },
-									{ Drive::Counterclockwise, Drive::Clockwise,        LOW,  HIGH, expectPins_switchingDelay   },
-									{ Drive::Counterclockwise, Drive::Counterclockwise, HIGH, LOW,  expectPins_noSwitchingDelay },
+	Transition transitions[] =	{	{ Drive::State::Stopped,          Drive::State::Stopped,          HIGH, HIGH, expectPins_noSwitchingDelay },
+									{ Drive::State::Stopped,          Drive::State::Clockwise,        LOW,  HIGH, expectPins_switchingDelay   },
+									{ Drive::State::Stopped,          Drive::State::Counterclockwise, HIGH, LOW,  expectPins_switchingDelay   },
+									{ Drive::State::Clockwise,        Drive::State::Stopped,          HIGH, HIGH, expectPins_switchingDelay   },
+									{ Drive::State::Clockwise,        Drive::State::Clockwise,        LOW,  HIGH, expectPins_noSwitchingDelay },
+									{ Drive::State::Clockwise,        Drive::State::Counterclockwise, HIGH, LOW,  expectPins_switchingDelay   },
+									{ Drive::State::Counterclockwise, Drive::State::Stopped,          HIGH, HIGH, expectPins_switchingDelay   },
+									{ Drive::State::Counterclockwise, Drive::State::Clockwise,        LOW,  HIGH, expectPins_switchingDelay   },
+									{ Drive::State::Counterclockwise, Drive::State::Counterclockwise, HIGH, LOW,  expectPins_noSwitchingDelay },
 								};
 
 	printf("\n");

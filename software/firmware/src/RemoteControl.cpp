@@ -33,23 +33,23 @@ namespace RemoteControl{
 	void tick(){
 		remoteControl.poll();
 		if((millis() - lastWritten_millis) > 100){
-			Drive::setState(Drive::Stopped);
+			Drive::setState(Drive::State::Stopped);
 		}
 	}
 
 	static void writtenHandler(BLEDevice device, BLECharacteristic characteristic){
 		switch(turntableCharacteristic.value()){
 			case 0x00:
-				Drive::setState(Drive::Stopped);
+				Drive::setState(Drive::State::Stopped);
 				break;
 			case 0x01:
-				Drive::setState(Drive::Clockwise);
+				Drive::setState(Drive::State::Clockwise);
 				break;
 			case 0x02:
-				Drive::setState(Drive::Counterclockwise);
+				Drive::setState(Drive::State::Counterclockwise);
 				break;
 			default:
-				Drive::setState(Drive::Stopped);
+				Drive::setState(Drive::State::Stopped);
 				break;
 		}
 		lastWritten_millis = millis();
