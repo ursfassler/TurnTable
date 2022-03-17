@@ -35,7 +35,7 @@ SRC_DIRS += ../src
 # TEST_SRC_FILES specifies individual test files to build.
 # TEST_SRC_DIRS, builds everything in the directory
 #TEST_SRC_FILES +=
-TEST_SRC_DIRS += .
+TEST_SRC_DIRS += tests
 
 # --- MOCKS_SRC_DIRS ---
 # MOCKS_SRC_DIRS specifies a directories where you can put your
