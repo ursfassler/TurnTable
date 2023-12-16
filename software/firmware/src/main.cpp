@@ -1,5 +1,5 @@
 #include <Arduino.h>
-//#include "RemoteControl.h"
+#include "RemoteControl.h"
 
 static const uint8_t PIN = 0;
 
