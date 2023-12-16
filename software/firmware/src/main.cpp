@@ -1,17 +1,17 @@
 #include <Arduino.h>
 #include "RemoteControl.h"
 
-static const uint8_t PIN = 0;
+static const uint8_t Pin = 0;
 
 void setup() {
 	//RemoteControl::setup();
-	pinMode(PIN, OUTPUT);
+	pinMode(Pin, OUTPUT);
 }
 
 void loop() {
 	//cRemoteControl::tick();
-	digitalWrite(PIN, LOW); 
+	digitalWrite(Pin, LOW); 
 	delay(500);
-	digitalWrite(PIN, HIGH);
+	digitalWrite(Pin, HIGH);
 	delay(500);
 }
