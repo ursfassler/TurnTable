@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include <ArduinoBLE.h>
-#include "RemoteControl.h"
+//#include <ArduinoBLE.h>
+//#include "RemoteControl.h"
 #include "Drive.h"
-
+/*
 namespace RemoteControl{
 	// UUID considerations.
 	// Avoid Base UUID.
@@ -54,4 +54,4 @@ namespace RemoteControl{
 		}
 		lastWritten_millis = millis();
 	}
-}
+}*/

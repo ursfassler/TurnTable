@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 namespace Drive{
 	enum class State{
 		Stopped,
@@ -8,4 +8,4 @@ namespace Drive{
 	};
 
 	extern void (*setState)(State state);
-}
+}*/

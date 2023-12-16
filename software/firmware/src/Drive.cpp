@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Drive.h"
 
-namespace Drive{
+/*namespace Drive{
 	static const pin_size_t DirectionPin_1 = 2;
 	static const pin_size_t DirectionPin_2 = 3;
 	static State oldState = State::Stopped;
@@ -21,7 +21,7 @@ namespace Drive{
 	static void setState_Implementation(State state){
 		pinMode(DirectionPin_1, OUTPUT);
 		pinMode(DirectionPin_2, OUTPUT);
-		switchingDelay(oldState, state);
+		switchingDelay(oldState, state); //TODO: this function should have a better name
 		switch(state){
 			case State::Clockwise:
 				digitalWrite(DirectionPin_1, LOW);
@@ -39,4 +39,4 @@ namespace Drive{
 		oldState = state;
 	}
 	void (*setState)(State state) = setState_Implementation;
-}
+}*/
