@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: run cucumber
-        run: sudo ./software/firmware/run_cucumber.sh -c --parallel
+        run: cd ./software/firmware && sudo ./run_cucumber.sh -c --parallel
