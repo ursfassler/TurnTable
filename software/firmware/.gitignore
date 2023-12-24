@@ -3,3 +3,6 @@ tmp/
 
 .vscode/c_cpp_properties.json
 .vscode/launch.json
+
+# this file is a temporary solution to hold secrets (wifi password, ...)
+src/Secrets.h
