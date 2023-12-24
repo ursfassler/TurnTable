@@ -5,7 +5,7 @@ do
     case "${flag}" in
         c) cmake_params=${OPTARG};;
         f) feature=${OPTARG};;
-	C) colored=t;;
+        C) colored=t;;
     esac
 done
 
