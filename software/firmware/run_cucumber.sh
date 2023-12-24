@@ -2,11 +2,11 @@
 
 while getopts c:f:C flag
 do
-    case "${flag}" in
-        c) cmake_params=${OPTARG};;
-        f) feature=${OPTARG};;
-        C) colored=t;;
-    esac
+	case "${flag}" in
+		c) cmake_params=${OPTARG};;
+		f) feature=${OPTARG};;
+		C) colored=t;;
+	esac
 done
 
 # make sure the TAG is unique by using PWD
