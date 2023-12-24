@@ -1,4 +1,6 @@
 {
+    "platformio-ide.autoOpenPlatformIOIniFile" : false,
+
     "emeraldwalk.runonsave": {
         "autoClearConsole": true,
         "commands": [

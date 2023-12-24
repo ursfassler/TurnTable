@@ -2,11 +2,11 @@
     // See http://go.microsoft.com/fwlink/?LinkId=827846
     // for the documentation about the extensions.json format
     "recommendations": [
-        "platformio.platformio-ide",
+        "emeraldwalk.runonsave",
         "mirza-hernic.vscode-smc",
-        "emeraldwalk.runonsave"
+        "platformio.platformio-ide"
     ],
     "unwantedRecommendations": [
-        "ms-vscode.cpptools-extension-pack" //added by platformio
+        "ms-vscode.cpptools-extension-pack"
     ]
 }
