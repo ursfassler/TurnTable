@@ -7,7 +7,7 @@ Persistency::Persistency() {
 }
 
 void Persistency::_Wifi_SSID::operator= (const char* ssid) {
-	auto i=0;
+	unsigned int i=0;
 	for(; i<strlen(ssid); i++) {
 		EEPROM.write(i, ssid[i]);
 	}
@@ -16,7 +16,7 @@ void Persistency::_Wifi_SSID::operator= (const char* ssid) {
 }
 
 Persistency::_Wifi_SSID::operator char*() {
-	for(auto i = 0; i < sizeof(ssid); i++) {
+	for(unsigned int i = 0; i < sizeof(ssid); i++) {
 		ssid[i] = EEPROM.read(i);
 	}
 	return this->ssid;
