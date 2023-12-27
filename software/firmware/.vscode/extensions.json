@@ -4,6 +4,7 @@
     "recommendations": [
         "emeraldwalk.runonsave",
         "mirza-hernic.vscode-smc",
+        "ms-vscode.cmake-tools",
         "platformio.platformio-ide"
     ],
     "unwantedRecommendations": [
