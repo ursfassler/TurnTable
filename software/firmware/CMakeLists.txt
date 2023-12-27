@@ -12,7 +12,7 @@ function(add_cucumber_executable target_name)
 	foreach(file_name ${ARGN})
 		get_filename_component(prefix ${file_name} NAME_WE)
 		set_source_files_properties(${file_name} PROPERTIES COMPILE_FLAGS "-DCUKE_OBJECT_PREFIX=_${prefix}")
-        endforeach()
+	endforeach()
 endfunction()
 
 file(GLOB_RECURSE all_cpp_files CONFIGURE_DEPENDS REGEX "src/*.cpp")
