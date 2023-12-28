@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # You must run this script without sudo. To run docker without sudo do the following:
 # sudo groupadd docker
@@ -27,9 +28,10 @@ cmake_command='
 
 cuke_execute='
 	feature_path=$(find -P ../.. -name ${feature}.feature)
+	feature_abs_path=`realpath "${feature_path}"`
 	./${executable} >/dev/null &
-	cucumber -S "${feature_path}"'
-
+	(cd "'${VOLUME_DIR}'" && cucumber -S "${feature_abs_path}")
+	'
 
 if [[ -z "${feature}" ]]
 then

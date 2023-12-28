@@ -55,7 +55,8 @@ foreach(step_file ${step_files})
 	target_link_libraries(${target_name} PRIVATE
 		"/lib/libcucumber-cpp.a"
 		"/usr/src/cucumber-cpp/build/gmock/src/gmock-build/lib/libgtest.a"
-		boost_iostreams boost_system boost_filesystem boost_regex boost_program_options
+		boost_system
+		boost_program_options
 	)
 	target_compile_options(
 		${target_name}
