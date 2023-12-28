@@ -49,12 +49,9 @@ foreach(step_file ${step_files})
 	add_cucumber_executable(${target_name} ${step_file} ${src_files})
 	target_include_directories(${target_name} PRIVATE ${include_dirs})
 	target_include_directories(${target_name} PRIVATE ${mock_include_dirs})
-	target_include_directories(${target_name} PRIVATE "/usr/src/cucumber-cpp/build/gmock/src/gmock/googletest/include")
-	target_include_directories(${target_name} PRIVATE "/usr/src/cucumber-cpp/include")
-	target_include_directories(${target_name} PRIVATE "/usr/src/cucumber-cpp/build/src")
 	target_link_libraries(${target_name} PRIVATE
-		"/lib/libcucumber-cpp.a"
-		"/usr/src/cucumber-cpp/build/gmock/src/gmock-build/lib/libgtest.a"
+		cucumber-cpp
+		gtest
 		boost_system
 		boost_program_options
 	)

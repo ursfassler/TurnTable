@@ -10,7 +10,6 @@ WORKDIR /usr/src/cucumber-cpp
 
 RUN apt-get update && \
     apt-get -y install cmake build-essential \
-                       libboost-test-dev \
                        git \
                        libboost-program-options-dev \
                        libboost-system-dev \
@@ -18,18 +17,26 @@ RUN apt-get update && \
                        ruby \
                        ruby-dev
 
-RUN git clone https://github.com/cucumber/cucumber-cpp.git . && \
-    git checkout 01d24e8b4f07f4abb2c13a21311431f792d4bccd
+RUN git clone https://github.com/google/googletest.git && \
+    cd googletest && \
+    git checkout v1.14.0 && \
+    mkdir build && \
+    cd build && \
+    cmake ../ && \
+    cmake --build . --parallel && \
+    cmake --install .
+
+RUN git clone https://github.com/cucumber/cucumber-cpp.git && \
+    cd cucumber-cpp && \
+    git checkout 01d24e8b4f07f4abb2c13a21311431f792d4bccd && \
+    cmake -E make_directory build && \
+    cmake -E chdir build cmake -DCUKE_TESTS_UNIT=off -DCUKE_ENABLE_BOOST_TEST=off -DCUKE_ENABLE_QT=off .. && \
+    cmake --build build && \
+    cmake --install build
 
 RUN gem install bundler && \
+    cd cucumber-cpp && \
     bundle install
-
-RUN cmake -E make_directory build && \
-    cmake -E chdir build cmake -DCUKE_ENABLE_EXAMPLES=on -DCMAKE_INSTALL_PREFIX=${prefix} .. && \
-    cmake --build build && \
-    cmake --build build --target test && \
-    cmake --build build --target install
-
 
 # Platformio setup
 # see: https://docs.platformio.org/en/latest/core/installation/methods/pypi.html
