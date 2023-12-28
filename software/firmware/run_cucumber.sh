@@ -4,12 +4,13 @@
 # sudo groupadd docker
 # sudo gpasswd -a $USER docker
 
-while getopts c:f:C flag
+while getopts c:f:Cu flag
 do
 	case "${flag}" in
 		c) cmake_params=${OPTARG};;
 		f) feature=${OPTARG};;
 		C) colored=t;;
+		u) upload_cmd='pio run -d ../.. -t upload';;
 	esac
 done
 
@@ -17,7 +18,7 @@ done
 TAG=$(echo ${PWD:1} | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
 VOLUME_DIR=/usr/firmware
 
-pio_command='pio run -d ../.. -t upload'
+pio_command=${upload_cmd}
 
 cmake_command='
 	set -e
@@ -27,7 +28,7 @@ cmake_command='
 cuke_execute='
 	feature_path=$(find -P ../.. -name ${feature}.feature)
 	./${executable} >/dev/null &
-	cucumber -S --publish-quiet "${feature_path}"'
+	cucumber -S "${feature_path}"'
 
 
 if [[ -z "${feature}" ]]

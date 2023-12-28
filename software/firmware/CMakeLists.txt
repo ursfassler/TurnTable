@@ -15,11 +15,12 @@ function(add_cucumber_executable target_name)
 	endforeach()
 endfunction()
 
-file(GLOB_RECURSE all_cpp_files CONFIGURE_DEPENDS REGEX "src/*.cpp")
+# Note: For the moment there are no source files #####################
+#file(GLOB_RECURSE all_cpp_files CONFIGURE_DEPENDS REGEX "src/*.cpp")
 set(src_files "")
-foreach(cpp_file ${all_cpp_files})
-	list(APPEND src_files ${cpp_file})
-endforeach()
+#foreach(cpp_file ${all_cpp_files})
+#	list(APPEND src_files ${cpp_file})
+#endforeach()
 
 file(GLOB_RECURSE all_cpp_files CONFIGURE_DEPENDS REGEX "features/*.cpp")
 set(step_files "")

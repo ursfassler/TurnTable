@@ -20,7 +20,7 @@ RUN apt-get update && \
                        libboost-all-dev
 
 RUN git clone https://github.com/cucumber/cucumber-cpp.git . && \
-    git checkout 147aa927124d10ffaa784e1895349c9e79dba3d7
+    git checkout 01d24e8b4f07f4abb2c13a21311431f792d4bccd
 
 RUN gem install bundler && \
     bundle install
