@@ -20,7 +20,8 @@ RUN apt-get update && \
                        libboost-all-dev
 
 RUN git clone https://github.com/cucumber/cucumber-cpp.git . && \
-    git checkout 01d24e8b4f07f4abb2c13a21311431f792d4bccd
+    git checkout 2f7d9ad519290a8b4a6ee6845af4480dd9ec2b7f
+    # git checkout 01d24e8b4f07f4abb2c13a21311431f792d4bccd dosnt find step definitions
 
 RUN gem install bundler && \
     bundle install
